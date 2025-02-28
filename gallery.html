@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Portfolio Assignment" content="Monica Paultre's Portfolio">
+        <link rel="stylesheet" href="css/styles.css">
+	    <script src="js/script.js" defer></script>
+        <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+        <script>
+             document.addEventListener("DOMContentLoaded", function () {
+            const images = ["fos1.jpg", "fos2.jpg", "fos3.jpg", "fos4.jpg", "fos5.jpg"];
+            let currentIndex = 0; 
+            const gallery = document.getElementById("gallery");
+
+            function updateGallery(index) {
+                gallery.innerHTML = ''; 
+                const imgElement = document.createElement("img");
+                imgElement.src = `assets/${images[index]}`;
+                imgElement.alt = images[index];
+                gallery.appendChild(imgElement);
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % images.length; 
+                updateGallery(currentIndex);
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateGallery(currentIndex);
+            }
+
+            updateGallery(currentIndex);
+
+            document.getElementById("next").addEventListener("click", nextImage);
+            document.getElementById("prev").addEventListener("click", prevImage);
+
+            setInterval(nextImage, 5000);
+        });
+        </script>
+        <title>Monica Paultre</title>
+    </head>
+<body>
+	<nav>
+        <div id="navLinks"></div>
+	</nav>
+  
+        <div id="showcase">
+            <div id="gallery"></div>
+            <p>Festival Of Souls Demon Mansion</p>
+            <div id="galbuttons">
+                <button id="prev">Previous</button>
+                <button id="next">Next</button>
+            </div>
+            <div id="gallery2">
+                
+                <img src="assets/BinoStencil3005.gif">
+                <p>Childish Gambino Stencil</p>
+                <img src="assets/NMBC.png">
+                <p>Nightmare Before Christmas Event</p>
+                <img src="assets/Mars.Png">
+                <img src="assets/BASE.png">
+                <img src="assets/Pluto.png">
+                <p>Unicorn Graphic Designs</p>
+                <img src="assets/piano.jpeg">
+                <p>Bar 27 & Lounge Piano Mural</p>
+                <img src="assets/MoonMural.jpg">
+                <p>JB & J Moon Mural</p>
+
+            </div>
+        </div>
+
+    
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+</body>
+</html>

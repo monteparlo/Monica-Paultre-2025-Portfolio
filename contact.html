@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Portfolio Assignment" content="Monica Paultre's Portfolio">
+        <link rel="stylesheet" href="css/styles.css">
+	    <script src="js/script.js" defer></script>
+        <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+        <title>Monica Paultre</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                function validateName(name) {
+                return name.trim().length > 2;
+                }
+
+                function validateEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email.trim());
+                }
+
+                function validateDate(date) {
+                    const today = new Date();
+                    const inputDate = new Date(date);
+                    return inputDate <= today;
+                }
+                
+                function validatePassword(password) {
+                    const lowerCase = /[a-z]/;
+                    const upperCase = /[A-Z]/;
+                    const numbers = /\d/;
+                    const specialCharacters = /[!@#$%^&*?~,./<>?=\-+()[\]{};:`|"']/;
+                    
+                    let strength = 0;
+                    
+                    if (password.length >= 6) strength++;
+                    if (lowerCase.test(password)) strength++;
+                    if (upperCase.test(password)) strength++;
+                    if (numbers.test(password)) strength++;
+                    if (specialCharacters.test(password)) strength++;
+
+                    if (password.length >= 8) strength++;
+                    
+                    return strength;
+                }
+
+                document.getElementById("password").addEventListener("input", function () {
+                    const password = document.getElementById("password").value;
+                    const resultDiv = document.getElementById("password-result");
+                    const strength = validatePassword(password);
+                    const meter = document.getElementById("strength-meter");
+
+                    if (strength === 0) {
+                        resultDiv.innerHTML = "<p style='color:black;'>🤖Enter a password and make it at least 6 characters long.</p>";
+                        meter.className = "very-weak";
+                    } else if (strength === 1) {
+                        resultDiv.innerHTML = "<p style='color:rgb(204, 51, 153);'>❌🤖Oh come on, you can do better than that! It's still a little weak. Add some magic to it!✨</p>";
+                        meter.className = "weak";
+                    } else if (strength === 2) {
+                        resultDiv.innerHTML = "<p style='color:rgb(153, 102, 255)'>✔It's good,.. but we both know you can do better!✨</p>";
+                        meter.className = "fair";
+                    } else if (strength === 3) {
+                        resultDiv.innerHTML = "<p style='color:rgb(51, 51, 204);'>🎇Great job! This is a pretty decent password.✨</p>";
+                        meter.className = "strong";
+                    } else if (strength === 4) {
+                        resultDiv.innerHTML = "<p style='color:rgb(0, 204, 102);'>🎆Now that's what I call a magical password!🦄✨</p>";
+                        meter.className = "very-strong";
+                    }
+
+                    meter.style.width = `${(strength / 5) * 100}%`;
+                });
+
+                document.getElementById("first_name").addEventListener("input", function () {
+                const firstName = document.getElementById("first_name").value;
+                const resultDiv = document.getElementById("first-name-result");
+                if (validateName(firstName)) {
+                    resultDiv.innerHTML = "<p style='color:green;'>Yay! A valid first name!🦄✨</p>";
+                } else {
+                    resultDiv.innerHTML = "<p style='color:burgundy;'>Uh-oh! Your first name is required!🤖❌</p>";
+                }
+                });
+
+                document.getElementById("last_name").addEventListener("input", function () {
+                const lastName = document.getElementById("last_name").value;
+                const resultDiv = document.getElementById("last-name-result");
+                if (validateName(lastName)) {
+                    resultDiv.innerHTML = "<p style='color:green;'>Yay! A valid last name!🦄✨</p>";
+                } else {
+                    resultDiv.innerHTML = "<p style='color:burgundy;'>Uh-oh! Your last name is required!🤖❌</p>";
+                }
+                });
+
+                document.getElementById("email").addEventListener("input", function () {
+                const email = document.getElementById("email").value;
+                const resultDiv = document.getElementById("email-result");
+                if (validateEmail(email)) {
+                    resultDiv.innerHTML = "<p style='color:green;'>Yay! A valid email!🦄✨</p>";
+                } else {
+                    resultDiv.innerHTML = "<p style='color:burgundy;'>Uh-oh! Your email is required! How would I get in touch with you? 🤖❌</p>";
+                }
+                });
+
+                document.getElementById("date").addEventListener("input", function () {
+                    const date = document.getElementById("date").value;
+                    const resultDiv = document.getElementById("date-result");
+                    if (validateDate(date)) {
+                        resultDiv.innerHTML = "<p style='color:green;'>Yay! A valid birth date!🦄✨</p>";
+                    } else {
+                        resultDiv.innerHTML = "<p style='color:burgundy;'>Uh-oh! The date cannot be in the future!🤖❌</p>";
+                    }
+                });
+             
+
+                document.getElementById("submit-btn").addEventListener("click", function (event) {
+                    event.preventDefault(); 
+                    const firstName = document.getElementById("first_name").value;
+                    const lastName = document.getElementById("last_name").value;
+                    const email = document.getElementById("email").value;
+                    const date = document.getElementById("date").value;
+                    const password = document.getElementById("password").value;
+                    if (validateName(firstName) && validateName(lastName) && validateEmail(email) && validateDate(date) && validatePassword(password) >= 3) {
+                        alert(`Thank you, ${firstName} ${lastName}! I see that your email is ${email}. I will be in touch with you soon! 🦄✨`);
+                    } else {
+                        alert("Invalid form. Check for typos.🤖❌");
+                    }
+                });
+
+            });
+
+
+
+        </script>
+    </head>
+<body>
+	<nav>
+        <div id="navLinks"></div>
+	</nav>
+
+    
+<section id="border">
+
+    <h2>I Would Love To Hear From <em>YOU!</em></h2>
+
+    <form>
+        <label for="first_name">First name:</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Your First Name">
+        <div id="first-name-result"></div>
+
+        <label for="last_name">Last name:</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Your Last Name">
+        <div id="last-name-result"></div>
+
+        <label for="email">Email address:</label>
+        <input type="text" id="email" name="email" placeholder="Your Email">
+        <div id="email-result"></div> 
+
+        <label for="date">Birthday:</label>
+        <input type="date" id="date" name="date">
+        <div id="date-result"></div> 
+
+        <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Your Password">
+            <div id="password-result"></div>
+            <div id="password-strength">
+            <div id="strength-meter"></div>
+
+        <input id="submit-btn" type="button" value="Submit">
+    </form> 
+
+    <p><b><em>Can't wait to get in touch with you!</em></b></p>
+
+</section>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+</body>
+</html>

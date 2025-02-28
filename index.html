@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Portfolio Assignment" content="Monica Paultre's Portfolio">
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Monica Paultre</title>
+        <script src="js/script.js" defer></script>
+        <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+        <script>  
+            function profile(onHover) {
+                const img = document.getElementById('profile');
+                img.src = onHover ? './assets/me.png' : './assets/profile.png';
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                var storedName = localStorage.getItem("username");
+                var visitCount = localStorage.getItem("visitCount");
+                var input, response;
+                visitCount = visitCount ? parseInt(visitCount) + 1 : 1;
+                localStorage.setItem("visitCount", visitCount);
+                if (!storedName) {
+                    input = prompt("✨Hello! It is so nice to meet you. My name is Monica Paultre. Welcome to my website! What's your name? ✨🦄✨");
+                    if (input) {
+                        localStorage.setItem("username", input);
+                        response = `✨Nice to meet you, ✨${input}✨. You have visited this page ${visitCount} time(s). I hope you have the most amazing day ever!✨🦄✨`;
+                    } else {
+                        response = `✨🦄✨Welcome to my website! You have visited this page ${visitCount} time(s). I hope you enjoy your visit! ✨`;
+                    }
+                } else {
+                    response = `✨🦄✨Welcome back, ${storedName}! You have visited this page ${visitCount} time(s). I hope you're having an amazing day!✨`;
+                }
+                document.getElementById("username").textContent = response;
+            });
+            function clearStorage() {
+                localStorage.clear();
+                alert("Eradicate. Eradicate. Local storage has been cleared. 🤖");
+                location.reload();
+            }
+        </script>
+       
+    </head>
+<body>
+    <nav>
+        <div id="navLinks"></div>
+    </nav>
+    <img src="assets/name.gif" id="name">
+    <div id="border">
+        <img src="assets/profile.png" width="250vh" id="profile" onmouseover="profile(true)" onmouseout="profile(false)">
+        <div id="username"></div>
+        <h3>✨Services:✨</h3>
+        <ul>
+            <li>Graphic Design Renderings</li>
+            <li>Web Development Programming</li>
+            <li>Miscellaneous Creative Productions</li>
+        </ul>
+            <p>I am the <em>most</em> creative girl you will meet. I'm serious. Jack of all trades is an understatement when it comes to everything I know how to do. The amount of experience I have in arts, coding, dancing, music, writing, designing, and so much more is pretty intense..<br><br> 
+            It all started at a young age when my mom first placed me in front of a computer. I went to town clicking everything and going through all of the personalization settings. You should have seen my face when I figured out how to change the desktop background to pink! You also should have seen my mom's face when she saw I personalized her computer way too much and she had to sit down with me and change everything back.<br><br>
+            Everything I have learned came from trial and error of never giving up on my dreams and passions. From event curations, to murals, to music production, to dancing, I have been expressing my creativity all of my life without stopping. <br><br>
+            It's going to be a heck of a ride going through all of my skillsets. So buckle up. I am about to take you on a rollercoaster of <em>creativity!</em></p>
+            <button onclick="clearStorage()">Eradicate.🤖</button>
+    </div>
+    <footer>
+        <div id="footer"></div>
+    </footer>
+</body>
+</html>
