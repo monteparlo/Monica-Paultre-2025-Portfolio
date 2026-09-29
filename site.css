@@ -101,3 +101,199 @@ img{max-width:100%;display:block}
  .tl{grid-template-columns:1fr;gap:8px}.timeline{padding-left:36px}.tl:before{left:-30px}
  .section-head{display:block}.section-head p{margin-top:14px}.feature img{height:250px}
 }
+
+
+/* ==========================================================
+   WEBFLOW HOME RECONSTRUCTION
+   Source-of-truth values inspected from monteparlo.webflow.io.
+   ========================================================== */
+.wf-home{
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  background:#000;
+  font-family:Urbanist, sans-serif;
+}
+.wf-home *{box-sizing:border-box}
+.wf-intro{
+  position:relative;
+  z-index:0;
+  display:flex;
+  box-sizing:border-box;
+  min-height:87vh;
+  margin-right:auto;
+  margin-left:auto;
+  justify-content:center;
+  align-items:center;
+  background-image:url("https://s3.amazonaws.com/webflow-prod-assets/627a2445eb48a9ec73548c1a/662f8c21131c379995995ff3_box.png");
+  background-position:50% 50%;
+  background-size:cover;
+  object-fit:scale-down;
+}
+.wf-mainprofile{
+  position:absolute;
+  inset:auto;
+  display:block;
+  overflow:visible;
+  width:auto;
+  height:auto;
+  max-width:none;
+  margin:auto;
+  background-color:#f9f9f9;
+  box-shadow:0 2px 13px 7px rgba(0,0,0,.2);
+  font-size:100%;
+  line-height:100%;
+  object-fit:none;
+}
+.wf-profile{
+  position:static;
+  inset:0;
+  z-index:1;
+  display:block;
+  overflow:visible;
+  box-sizing:border-box;
+  max-width:none;
+  padding:0 0 0;
+  opacity:1;
+  vertical-align:middle;
+  object-fit:contain;
+}
+.wf-mainlogo{
+  position:absolute;
+  left:56%;
+  top:47%;
+  right:50%;
+  bottom:50%;
+  z-index:0;
+  overflow:visible;
+  width:35%;
+  align-self:auto;
+  object-fit:none;
+}
+.wf-logorg{
+  position:absolute;
+  z-index:2;
+  padding-right:0;
+  vertical-align:middle;
+}
+.wf-menu-wrapper{
+  position:sticky;
+  left:0;
+  top:auto;
+  right:0;
+  bottom:0;
+  z-index:900;
+  display:block;
+  background:#000;
+}
+.wf-navbar{
+  position:static;
+  display:block;
+  min-height:13vh;
+  min-width:auto;
+  margin:0;
+  padding:0;
+  background:#000;
+  line-height:0;
+  text-align:left;
+}
+.wf-brand{
+  position:static;
+  bottom:-36px;
+  display:block;
+  float:left;
+}
+.wf-navlogo{
+  position:absolute;
+  left:4%;
+  top:0;
+  right:auto;
+  bottom:0;
+  display:block;
+  max-width:none;
+  margin:auto;
+  padding:0;
+  float:none;
+  object-fit:contain;
+}
+.wf-nav{
+  position:relative;
+  inset:0;
+  display:flex;
+  margin-left:0;
+  justify-content:flex-end;
+  align-items:center;
+  align-self:center;
+}
+.wf-nav-menu{
+  position:absolute;
+  left:auto;
+  top:0;
+  right:0;
+  bottom:0;
+  z-index:0;
+  display:flex;
+  margin-right:5%;
+  flex-direction:row;
+  justify-content:center;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:35px;
+  font-family:Urbanist,sans-serif;
+  font-size:18px;
+  line-height:0;
+  font-weight:400;
+}
+.wf-mpproductions{
+  position:relative;
+  inset:0;
+  display:flex;
+  margin-right:40px;
+  padding:0;
+  float:right;
+  flex-direction:row;
+  justify-content:center;
+  flex-wrap:nowrap;
+  align-items:center;
+  background:transparent;
+  font-family:Urbanist,sans-serif;
+  color:#f9f9f9;
+  font-size:20px;
+  line-height:0;
+  font-weight:100;
+  letter-spacing:2px;
+  text-decoration:none;
+}
+.wf-nav-link{
+  margin:0;
+  padding:0;
+  border-radius:5px;
+  transition:all 300ms ease;
+  color:#f9f9f9;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.wf-nav-link:hover{background-color:#222;background-image:none}
+.wf-nav-link:focus-visible,.wf-mpproductions:focus-visible,.wf-brand:focus-visible{
+  outline:2px solid #cf7ca0;
+  outline-offset:6px;
+}
+@media(max-width:991px){
+  .wf-nav-menu{
+    position:relative;
+    width:100vw;
+    margin-right:0;
+    padding:140px 24px 30px;
+    flex-wrap:wrap;
+    background:#eb5757;
+    line-height:1.2;
+  }
+  .wf-nav-link{font-size:30px;text-align:center}
+  .wf-navbar{min-height:13vh}
+}
+@media(max-width:479px){
+  .wf-mainprofile{width:260%;height:52.856628%;min-height:52.857%;min-width:260%}
+  .wf-brand{width:100px}
+  .wf-nav-menu{gap:20px}
+}
