@@ -297,3 +297,170 @@ img{max-width:100%;display:block}
   .wf-brand{width:100px}
   .wf-nav-menu{gap:20px}
 }
+
+
+/* MONTEPARLO INTERACTIVE FIELD */
+:root{
+  --mp-x:50%;
+  --mp-y:35%;
+  --mp-hue:0deg;
+  --home-x:0px;
+  --home-y:0px;
+  --home-logo-x:0px;
+  --home-logo-y:0px;
+}
+
+/* The legacy Webflow home stays one-for-one in layout; only movement/light is layered on. */
+.wf-intro{
+  background-position:calc(50% + var(--home-x)) calc(50% + var(--home-y));
+  transition:background-position 120ms linear;
+}
+.wf-mainprofile{
+  transform:translate3d(calc(var(--home-x) * .18),calc(var(--home-y) * .18),0);
+  transition:transform 140ms ease-out;
+}
+.wf-mainlogo{
+  transform:translate3d(var(--home-logo-x),var(--home-logo-y),0);
+  transition:transform 140ms ease-out;
+}
+.wf-logorg{
+  animation:monteparlo-hue 18s linear infinite;
+  transform-origin:center;
+}
+.wf-logorg:hover{
+  animation-duration:3.5s;
+  filter:saturate(1.18) drop-shadow(0 12px 25px rgba(207,124,160,.35));
+}
+@keyframes monteparlo-hue{
+  0%{filter:hue-rotate(0deg) saturate(1)}
+  50%{filter:hue-rotate(165deg) saturate(1.2)}
+  100%{filter:hue-rotate(360deg) saturate(1)}
+}
+
+/* Pointer-reactive MonteParlo texture field for interior pages. */
+.page-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at var(--mp-x) var(--mp-y),rgba(255,255,255,.92) 0 7%,transparent 31%),
+    radial-gradient(circle at 84% 18%,rgba(255,170,211,.42),transparent 33%),
+    radial-gradient(circle at 16% 80%,rgba(160,129,255,.18),transparent 31%),
+    linear-gradient(130deg,#fffaf8 0%,#f9e1e8 51%,#edcbd4 100%);
+}
+.page-hero:before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.34;
+  background:
+    repeating-linear-gradient(117deg,transparent 0 37px,rgba(74,16,51,.055) 38px 39px),
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.85) 0 1px,transparent 2px);
+  background-size:auto,7px 7px;
+  transform:translate3d(calc((var(--mp-x) - 50%) * .05),calc((var(--mp-y) - 50%) * .05),0);
+  filter:hue-rotate(var(--mp-hue));
+}
+.page-hero i,.hue-text{
+  background:linear-gradient(90deg,#b94d70,#dc78a6,#896de8,#e795a8,#b94d70);
+  background-size:260% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent!important;
+  animation:monte-text-hue 9s linear infinite;
+}
+@keyframes monte-text-hue{to{background-position:260% 0}}
+
+/* Magnetic buttons. */
+.magnetic{
+  transform:translate3d(var(--mag-x,0),var(--mag-y,0),0);
+  transition:transform 180ms cubic-bezier(.2,.8,.2,1),background-color 180ms,border-color 180ms;
+}
+
+/* 3D gallery treatment for portfolio cards; subtle enough to remain readable. */
+.project,.tilt-card{
+  --rx:0deg;
+  --ry:0deg;
+  --shine-x:50%;
+  --shine-y:50%;
+  position:relative;
+  transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+  transform-style:preserve-3d;
+  transition:transform 180ms ease,box-shadow 220ms ease,opacity 350ms ease;
+}
+.project:after,.tilt-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  opacity:0;
+  background:radial-gradient(circle at var(--shine-x) var(--shine-y),rgba(255,255,255,.55),transparent 38%);
+  transition:opacity 180ms;
+}
+.project:hover:after,.tilt-card:hover:after{opacity:.35}
+.project:hover,.tilt-card:hover{box-shadow:0 24px 60px rgba(62,20,43,.13)}
+
+/* Scroll-reveal animation. */
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.in-view{opacity:1;transform:translateY(0);transition:opacity 550ms ease,transform 650ms cubic-bezier(.2,.8,.2,1)}
+.project.reveal{transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(18px)}
+.project.reveal.in-view{transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0)}
+
+/* Book project */
+.book-stage{
+  min-height:62vh;
+  display:grid;
+  place-items:center;
+  padding:70px 0 100px;
+  background:
+    radial-gradient(circle at var(--mp-x) var(--mp-y),rgba(248,164,196,.33),transparent 34%),
+    linear-gradient(145deg,#150911,#281225 55%,#130912);
+}
+.book-object{
+  width:min(720px,88vw);
+  min-height:430px;
+  padding:54px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:4px 24px 24px 4px;
+  color:#fffaf8;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.05),transparent 5%),
+    radial-gradient(circle at 75% 20%,rgba(222,93,151,.28),transparent 34%),
+    #21101d;
+  box-shadow:-12px 14px 0 #0d070b,0 40px 90px rgba(0,0,0,.35);
+}
+.book-object .book-title{
+  max-width:620px;
+  font:400 clamp(44px,7vw,86px)/.86 Georgia,serif;
+  letter-spacing:-.055em;
+  margin:0;
+}
+.book-object .book-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-family:Urbanist,sans-serif;
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#e6b9ca;
+}
+
+/* A tiny rainbow edge on hover = the old MJXIII hue-era DNA, but cleaner. */
+.card,.mini,.tl{
+  background-clip:padding-box;
+}
+.card:hover{
+  border-color:transparent;
+  box-shadow:0 0 0 1px rgba(213,105,151,.32),0 20px 60px rgba(66,22,44,.11);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wf-logorg,.page-hero i,.hue-text{animation:none!important}
+  .wf-intro,.wf-mainprofile,.wf-mainlogo,.project,.tilt-card,.magnetic,.reveal{transition:none!important;transform:none!important}
+}
